@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import coil.compose.SubcomposeAsyncImage
 
 @Composable
 fun Startscreen(navController: NavController, homeViewModel: HomeViewModel = viewModel()){
@@ -42,12 +44,13 @@ fun Startscreen(navController: NavController, homeViewModel: HomeViewModel = vie
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
-            contentDescription = "Image of shoe",
-            modifier = Modifier
-                .fillMaxWidth(),
-            alignment = Alignment.Center
+        SubcomposeAsyncImage(
+            model = R.drawable.spalshx`,
+            contentDescription = "Splash Image",
+            loading = {
+                CircularProgressIndicator(modifier = Modifier.fillMaxWidth())
+            },
+            modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(50.dp))
         Text(
@@ -61,14 +64,12 @@ fun Startscreen(navController: NavController, homeViewModel: HomeViewModel = vie
         Spacer(modifier = Modifier.height(30.dp))
         Button(
             onClick = {
-                navController.navigate(Screens.Home.name)
+                navController.navigate(Screens.Home.name){
+                    launchSingleTop = true
+                }
             },
             modifier = Modifier
                 .fillMaxWidth(),
-//                .background(
-//                    brush = homeViewModel.customColor(),
-//                    shape = RoundedCornerShape(8.dp)
-//                ),
             colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color.Black),
             shape = RoundedCornerShape(8.dp)
         ) {

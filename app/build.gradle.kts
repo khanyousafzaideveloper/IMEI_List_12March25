@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
 
+    implementation(libs.coil.compose)
+
     implementation(libs.accompanist.systemuicontroller)
 
     implementation(libs.androidx.appcompat)
