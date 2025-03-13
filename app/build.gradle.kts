@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.softech.imei_list_12march25"
+        applicationId = "com.softech.unlock_imei"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -49,6 +49,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.accompanist.systemuicontroller)
+
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.process)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
