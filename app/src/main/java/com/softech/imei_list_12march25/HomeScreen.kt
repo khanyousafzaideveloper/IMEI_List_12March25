@@ -66,47 +66,46 @@ fun HomeScreen(
     }
     val cardList = listOf(
         CardItem(
-            "Check IMEI",
+            CardTitle.CHECK_IMEI.title,
             "Verify and retrieve details about your device's IMEI number.",
             R.drawable.group_769,
-            onClick = { }
+            onClick = { navController.navigate("WebpageView/${CardTitle.CHECK_IMEI.title}") }
         ),
         CardItem(
-            "Find IMEI",
+            CardTitle.FIND_IMEI.title,
             "Locate your device's IMEI number quickly and easily.",
             R.drawable.group_771,
-            onClick = { }
+            onClick = { navController.navigate("WebpageView/${CardTitle.FIND_IMEI.title}") }
         ),
         CardItem(
-            "Unlock IMEI",
+            CardTitle.UNLOCK_IMEI.title,
             "Unlock your device's IMEI to access network services.",
             R.drawable.group_770,
-            onClick = { }
+            onClick = { navController.navigate("WebpageView/${CardTitle.UNLOCK_IMEI.title}") }
         ),
         CardItem(
-            "Device Info",
+            CardTitle.DEVICE_INFO.title,
             "Retrieve complete hardware and software details of your device.",
             R.drawable.group_774,
-            onClick = { }
+            onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_INFO.title}") }
         ),
-
         CardItem(
-            "Device Unlock",
+            CardTitle.DEVICE_UNLOCK.title,
             "Remove restrictions and unlock your device for all networks.",
             R.drawable.group_772,
-            onClick = { }
+            onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_UNLOCK.title}") }
         ),
         CardItem(
-            "Android Secret Codes",
+            CardTitle.ANDROID_SECRET_CODES.title,
             "Discover hidden Android and iOS secret codes for advanced features.",
             R.drawable.group_775,
-            onClick = { navController.navigate(Screens.SecretCodes.name)}
+            onClick = { navController.navigate(Screens.SecretCodes.name) }
         ),
         CardItem(
-            "Free IMEI Inspection",
+            CardTitle.FREE_IMEI_INSPECTION.title,
             "Get a free IMEI check to verify your device’s authenticity.",
             R.drawable.group_773,
-            onClick = { }
+            onClick = { navController.navigate("WebpageView/${CardTitle.FREE_IMEI_INSPECTION.title}") }
         ),
 
 
@@ -349,3 +348,23 @@ data class CardItem(
 //        }
 //    }
 //}
+
+enum class CardTitle(val title: String) {
+    CHECK_IMEI("Check IMEI"),
+    FIND_IMEI("Find IMEI"),
+    UNLOCK_IMEI("Unlock IMEI"),
+    DEVICE_INFO("Device Info"),
+    DEVICE_UNLOCK("Device Unlock"),
+    ANDROID_SECRET_CODES("Android Secret Codes"),
+    FREE_IMEI_INSPECTION("Free IMEI Inspection"),
+    SHARE_WITH_FRIENDS("Share With Friends"),
+    MORE_APPS("More Apps"),
+    USER_FEEDBACK("User Feedback");
+
+    companion object {
+        fun fromTitle(title: String): CardTitle? {
+            return entries.find { it.title == title }
+        }
+    }
+}
+

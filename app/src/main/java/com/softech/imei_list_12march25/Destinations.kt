@@ -27,8 +27,9 @@ fun Destinations(navController : NavHostController){
         composable(Screens.SubmitSuccess.name){
           //  SubmitSucccess(navController = navController)
         }
-        composable(Screens.AndroidView.name) {
-            WebPage_Icloud(navController = navController)
+        composable("WebpageView/{title}") { backStackEntry ->
+            val title = backStackEntry.arguments?.getString("title") ?: "Default Title"
+            WebPage_Icloud(title, navController = navController)
         }
         composable(Screens.SecretCodes.name) {
             SelectBrandListScreen(brands = brandNamesEnum.entries,navController)

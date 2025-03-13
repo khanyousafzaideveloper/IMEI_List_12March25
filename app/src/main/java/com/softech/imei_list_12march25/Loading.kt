@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BallClipRotateMultipleIndicator(
-    color: Color = Color(0xFFFF001F),
+    color: Color = Color(0xFF1D3D73),
     animationDuration: Int = 400,
     penThickness: Dp = 4.dp,
     canvasSize: Float = 80f,

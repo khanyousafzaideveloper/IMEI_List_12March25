@@ -45,7 +45,7 @@ fun Startscreen(navController: NavController, homeViewModel: HomeViewModel = vie
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SubcomposeAsyncImage(
-            model = R.drawable.spalshx`,
+            model = R.drawable.spalsh,
             contentDescription = "Splash Image",
             loading = {
                 CircularProgressIndicator(modifier = Modifier.fillMaxWidth())

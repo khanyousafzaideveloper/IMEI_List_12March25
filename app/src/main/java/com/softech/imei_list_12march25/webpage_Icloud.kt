@@ -17,7 +17,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @Composable
-fun WebPage_Icloud(homeViewModel:HomeViewModel = viewModel(), navController: NavController) {
+fun WebPage_Icloud(title: String, homeViewModel:HomeViewModel = viewModel(), navController: NavController) {
+
+    val url = when (title) {
+        CardTitle.CHECK_IMEI.title -> "https://www.imei.info/"
+        CardTitle.FIND_IMEI.title -> "https://www.digitaltrends.com/mobile/how-to-check-your-imei-number/"
+        CardTitle.UNLOCK_IMEI.title -> "https://www.doctorsim.com/us-en/unlock-phone/"
+        CardTitle.DEVICE_INFO.title -> "https://imeicheck.com/imei-check"
+        CardTitle.DEVICE_UNLOCK.title -> "https://directunlocks.com/en_us"
+        CardTitle.ANDROID_SECRET_CODES.title -> " "
+        CardTitle.FREE_IMEI_INSPECTION.title -> "https://imei24.com/"
+        else -> "https://www.passfab.com/unlock/unlock-phone-free-with-imei-number.html" // Default URL if title doesn't match
+    }
+
     val isLoading = remember { mutableStateOf(true) } // Track the loading state
     Box(modifier = Modifier.fillMaxSize()) {
         // WebView
@@ -51,7 +63,7 @@ fun WebPage_Icloud(homeViewModel:HomeViewModel = viewModel(), navController: Nav
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.Red.copy(alpha = 0.4f)), // Optional dim background
+                    .background(Color.Blue.copy(alpha = 0.4f)), // Optional dim background
                 contentAlignment = Alignment.Center
             ) {
                 BallClipRotateMultipleIndicator()
