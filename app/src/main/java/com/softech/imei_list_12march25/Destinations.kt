@@ -31,17 +31,14 @@ fun Destinations(navController : NavHostController){
             WebPage_Icloud(navController = navController)
         }
         composable(Screens.SecretCodes.name) {
-//            SelectBrandListScreen(
-//                brands = brandNamesEnum.entries,
-//                navController = navController
-//            )
+            SelectBrandListScreen(brands = brandNamesEnum.entries,navController)
         }
 
         composable(route="brand/{data}"){backStackEntry ->
-//            val data =  backStackEntry.arguments?.getString("data")
-//            if (data != null) {
-//                SecretCodeListScreen(selectedBrand = data)
-//            }
+            val data =  backStackEntry.arguments?.getString("data")
+            if (data != null) {
+                SecretCodeListScreen(selectedBrand = data, navController = navController)
+            }
         }
 
     }

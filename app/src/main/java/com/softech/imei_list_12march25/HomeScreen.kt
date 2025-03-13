@@ -66,12 +66,6 @@ fun HomeScreen(
     }
     val cardList = listOf(
         CardItem(
-            "Unlock IMEI",
-            "Unlock your device's IMEI to access network services.",
-            R.drawable.group_770,
-            onClick = { }
-        ),
-        CardItem(
             "Check IMEI",
             "Verify and retrieve details about your device's IMEI number.",
             R.drawable.group_769,
@@ -84,15 +78,9 @@ fun HomeScreen(
             onClick = { }
         ),
         CardItem(
-            "Unlock Device",
-            "Remove restrictions and unlock your device for all networks.",
-            R.drawable.group_772,
-            onClick = { }
-        ),
-        CardItem(
-            "Free IMEI Inspection",
-            "Get a free IMEI check to verify your device’s authenticity.",
-            R.drawable.group_773,
+            "Unlock IMEI",
+            "Unlock your device's IMEI to access network services.",
+            R.drawable.group_770,
             onClick = { }
         ),
         CardItem(
@@ -101,12 +89,27 @@ fun HomeScreen(
             R.drawable.group_774,
             onClick = { }
         ),
+
+        CardItem(
+            "Device Unlock",
+            "Remove restrictions and unlock your device for all networks.",
+            R.drawable.group_772,
+            onClick = { }
+        ),
         CardItem(
             "Android Secret Codes",
             "Discover hidden Android and iOS secret codes for advanced features.",
             R.drawable.group_775,
+            onClick = { navController.navigate(Screens.SecretCodes.name)}
+        ),
+        CardItem(
+            "Free IMEI Inspection",
+            "Get a free IMEI check to verify your device’s authenticity.",
+            R.drawable.group_773,
             onClick = { }
         ),
+
+
         CardItem(
             "Share With Friends",
             "Easily share this app with your friends and family.",

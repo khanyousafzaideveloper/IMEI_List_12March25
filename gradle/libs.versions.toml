@@ -14,7 +14,6 @@ navigationCompose = "2.8.4"
 accompanistSystemuicontroller = "0.30.0"
 
 
-
 [libraries]
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
