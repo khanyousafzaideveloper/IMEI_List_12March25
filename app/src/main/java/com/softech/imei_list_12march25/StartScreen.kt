@@ -15,6 +15,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,8 +26,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 // Pre-defined constants
 private val SPLASH_TEXT = "Unlock Your Device, get Information about Phone and IMEI"
@@ -52,9 +59,10 @@ private val buttonModifier = Modifier
 private val buttonShape = RoundedCornerShape(8.dp)
 
 @Composable
-fun StartScreen(navController: NavController) {
+fun StartScreen(navController: NavController, homeViewModel: HomeViewModel = viewModel()) {
     val context = LocalContext.current
     val activity = remember { context as Activity }
+    val isLoading by homeViewModel.isLoading.collectAsState()
 
     // Handle back press
     BackHandler {
@@ -101,7 +109,13 @@ fun StartScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(30.dp))
 
         Button(
-            onClick = navigateToHome,
+            onClick = {
+                homeViewModel.startLoading()
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(2400)
+                    navigateToHome()
+                }
+                      },
             modifier = buttonModifier,
             colors =  ButtonDefaults.buttonColors(
                 containerColor = Color.White,
@@ -114,6 +128,10 @@ fun StartScreen(navController: NavController) {
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        if(isLoading){
+            CircularProgressIndicator(color = Color.White)
         }
     }
 }

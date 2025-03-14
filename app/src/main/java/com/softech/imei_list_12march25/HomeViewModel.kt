@@ -18,14 +18,26 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class HomeViewModel:ViewModel() {
 
     var name by mutableStateOf("")
     var email by mutableStateOf("")
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    fun startLoading() {
+        _isLoading.value = true
+    }
+
+    fun stopLoading() {
+        _isLoading.value = false
+    }
     var imei by mutableStateOf("")
     var phoneModel by mutableStateOf("")
     var selectedService by mutableStateOf("")
@@ -41,8 +53,70 @@ class HomeViewModel:ViewModel() {
     val availableStorage = statFs.availableBytes / (1024 * 1024 * 1024) // Convert to GB
 
 
-
-
+    fun getCardItems(navController: NavController, context: Context): List<CardItem> {
+        return listOf(
+            CardItem(
+                CardTitle.CHECK_IMEI.title,
+                "Verify and retrieve details about your device's IMEI number.",
+                R.drawable.group_769,
+                onClick = { navController.navigate("WebpageView/${CardTitle.CHECK_IMEI.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
+                CardTitle.FIND_IMEI.title,
+                "Locate your device's IMEI number quickly and easily.",
+                R.drawable.group_771,
+                onClick = { navController.navigate("WebpageView/${CardTitle.FIND_IMEI.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
+                CardTitle.UNLOCK_IMEI.title,
+                "Unlock your device's IMEI to access network services.",
+                R.drawable.group_770,
+                onClick = { navController.navigate("WebpageView/${CardTitle.UNLOCK_IMEI.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
+                CardTitle.DEVICE_INFO.title,
+                "Retrieve complete hardware and software details of your device.",
+                R.drawable.group_774,
+                onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_INFO.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
+                CardTitle.DEVICE_UNLOCK.title,
+                "Remove restrictions and unlock your device for all networks.",
+                R.drawable.group_772,
+                onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_UNLOCK.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
+                CardTitle.ANDROID_SECRET_CODES.title,
+                "Discover hidden Android and iOS secret codes for advanced features.",
+                R.drawable.group_775,
+                onClick = { navController.navigate(Screens.SecretCodes.name) { launchSingleTop = true } }
+            ),
+            CardItem(
+                CardTitle.FREE_IMEI_INSPECTION.title,
+                "Get a free IMEI check to verify your device's authenticity.",
+                R.drawable.group_773,
+                onClick = { navController.navigate("WebpageView/${CardTitle.FREE_IMEI_INSPECTION.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
+                "Share With Friends",
+                "Easily share this app with your friends and family.",
+                R.drawable.group_776,
+                onClick = { shareApp(context) }
+            ),
+            CardItem(
+                "More Apps",
+                "Explore and download more useful apps like this.",
+                R.drawable.group_777,
+                onClick = { moreApps(context) }
+            ),
+            CardItem(
+                "User Feedback",
+                "Provide your valuable feedback to help us improve the app.",
+                R.drawable.group_778,
+                onClick = { navController.navigate(Screens.FormOne.name) { launchSingleTop = true } }
+            )
+        )
+    }
 
     fun phoneAppShareEMEICode(context: Context, code:String){
         val intent = Intent(Intent.ACTION_DIAL)
