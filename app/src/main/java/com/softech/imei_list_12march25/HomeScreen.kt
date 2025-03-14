@@ -125,7 +125,7 @@ fun HomeScreen(
             "User Feedback",
             "Provide your valuable feedback to help us improve the app.",
             R.drawable.group_778,
-            onClick = { homeViewModel.shareApp(context = context) }
+            onClick = { navController.navigate(Screens.FormOne.name) }
         )
     )
     Column(

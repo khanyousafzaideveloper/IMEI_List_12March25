@@ -16,7 +16,7 @@ fun Destinations(navController : NavHostController){
             HomeScreen(navController)
         }
         composable(Screens.FormOne.name) {
-          //  FormOne(navController = navController)
+            FeedbackScreen(navController)
         }
         composable(Screens.FormTwo.name) {
          //   FormTwo(navController = navController)
