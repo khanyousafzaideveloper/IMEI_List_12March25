@@ -18,6 +18,8 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.ViewModel
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class HomeViewModel:ViewModel() {
 
@@ -37,8 +39,6 @@ class HomeViewModel:ViewModel() {
     val statFs = StatFs(Environment.getDataDirectory().absolutePath)
     val totalStorage = statFs.totalBytes / (1024 * 1024 * 1024) // Convert to GB
     val availableStorage = statFs.availableBytes / (1024 * 1024 * 1024) // Convert to GB
-
-
 
 
 
