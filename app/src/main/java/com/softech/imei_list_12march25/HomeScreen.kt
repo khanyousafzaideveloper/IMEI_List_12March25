@@ -32,6 +32,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -64,48 +65,50 @@ fun HomeScreen(
     BackHandler {
         activity?.finishAffinity()
     }
+
+
     val cardList = listOf(
         CardItem(
             CardTitle.CHECK_IMEI.title,
             "Verify and retrieve details about your device's IMEI number.",
             R.drawable.group_769,
-            onClick = { navController.navigate("WebpageView/${CardTitle.CHECK_IMEI.title}") }
+            onClick = { navController.navigate("WebpageView/${CardTitle.CHECK_IMEI.title}"){launchSingleTop = true} }
         ),
         CardItem(
             CardTitle.FIND_IMEI.title,
             "Locate your device's IMEI number quickly and easily.",
             R.drawable.group_771,
-            onClick = { navController.navigate("WebpageView/${CardTitle.FIND_IMEI.title}") }
+            onClick = { navController.navigate("WebpageView/${CardTitle.FIND_IMEI.title}"){launchSingleTop = true} }
         ),
         CardItem(
             CardTitle.UNLOCK_IMEI.title,
             "Unlock your device's IMEI to access network services.",
             R.drawable.group_770,
-            onClick = { navController.navigate("WebpageView/${CardTitle.UNLOCK_IMEI.title}") }
+            onClick = { navController.navigate("WebpageView/${CardTitle.UNLOCK_IMEI.title}"){launchSingleTop = true} }
         ),
         CardItem(
             CardTitle.DEVICE_INFO.title,
             "Retrieve complete hardware and software details of your device.",
             R.drawable.group_774,
-            onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_INFO.title}") }
+            onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_INFO.title}"){launchSingleTop = true} }
         ),
         CardItem(
             CardTitle.DEVICE_UNLOCK.title,
             "Remove restrictions and unlock your device for all networks.",
             R.drawable.group_772,
-            onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_UNLOCK.title}") }
+            onClick = { navController.navigate("WebpageView/${CardTitle.DEVICE_UNLOCK.title}"){launchSingleTop = true} }
         ),
         CardItem(
             CardTitle.ANDROID_SECRET_CODES.title,
             "Discover hidden Android and iOS secret codes for advanced features.",
             R.drawable.group_775,
-            onClick = { navController.navigate(Screens.SecretCodes.name) }
+            onClick = { navController.navigate(Screens.SecretCodes.name){launchSingleTop = true} }
         ),
         CardItem(
             CardTitle.FREE_IMEI_INSPECTION.title,
             "Get a free IMEI check to verify your device’s authenticity.",
             R.drawable.group_773,
-            onClick = { navController.navigate("WebpageView/${CardTitle.FREE_IMEI_INSPECTION.title}") }
+            onClick = { navController.navigate("WebpageView/${CardTitle.FREE_IMEI_INSPECTION.title}"){launchSingleTop = true} }
         ),
 
 
@@ -125,7 +128,7 @@ fun HomeScreen(
             "User Feedback",
             "Provide your valuable feedback to help us improve the app.",
             R.drawable.group_778,
-            onClick = { navController.navigate(Screens.FormOne.name) }
+            onClick = { navController.navigate(Screens.FormOne.name){launchSingleTop = true} }
         )
     )
     Column(
@@ -251,6 +254,7 @@ fun CustomCard(
     }
 }
 
+@Immutable
 data class CardItem(
     val title: String,
     val description: String,
