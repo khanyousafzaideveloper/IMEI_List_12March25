@@ -10,7 +10,7 @@ fun Destinations(navController : NavHostController){
     //val navController : NavHostController = rememberNavController()
     NavHost(navController = navController, startDestination = Screens.StartScreen.name) {
         composable(route=Screens.StartScreen.name){
-            Startscreen(navController)
+            StartScreen(navController)
         }
         composable(Screens.Home.name) {
             HomeScreen(navController)

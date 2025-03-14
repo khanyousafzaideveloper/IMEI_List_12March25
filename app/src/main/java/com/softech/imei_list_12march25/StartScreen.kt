@@ -2,8 +2,6 @@ package com.softech.imei_list_12march25
 
 import android.app.Activity
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,67 +15,104 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
 
+// Pre-defined constants
+private val SPLASH_TEXT = "Unlock Your Device, get Information about Phone and IMEI"
+
+// Predefined modifiers to avoid recreation during recomposition
+private val columnModifier = Modifier
+    .fillMaxSize()
+    .padding(12.dp)
+
+private val imageModifier = Modifier
+    .fillMaxWidth()
+
+private val textModifier = Modifier
+    .fillMaxWidth()
+
+private val buttonModifier = Modifier
+    .fillMaxWidth()
+
+//private val buttonColors = ButtonDefaults.buttonColors(
+//    containerColor = Color.White,
+//    contentColor = Color.Black
+//)
+
+private val buttonShape = RoundedCornerShape(8.dp)
+
 @Composable
-fun Startscreen(navController: NavController, homeViewModel: HomeViewModel = viewModel()){
+fun StartScreen(navController: NavController) {
     val context = LocalContext.current
-    val activity = context as Activity
+    val activity = remember { context as Activity }
+
+    // Handle back press
     BackHandler {
         activity.finishAffinity()
     }
+
+    // Remember the navigation action to prevent recreation
+    val navigateToHome = remember(navController) {
+        {
+            navController.navigate(Screens.Home.name) {
+                launchSingleTop = true
+            }
+        }
+    }
+
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(12.dp),
+        modifier = columnModifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // Use SubcomposeAsyncImage optimized with remembered modifiers
         SubcomposeAsyncImage(
             model = R.drawable.spalsh,
             contentDescription = "Splash Image",
             loading = {
-                CircularProgressIndicator(modifier = Modifier.fillMaxWidth())
+                CircularProgressIndicator(
+                    modifier = imageModifier
+                )
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = imageModifier
         )
+
         Spacer(modifier = Modifier.height(50.dp))
+
         Text(
-            "Unlock Your Device, get Information about Phone and IMEI",
-            modifier = Modifier.fillMaxWidth(),
+            text = SPLASH_TEXT,
+            modifier = textModifier,
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
             color = Color.White,
             textAlign = TextAlign.Center,
         )
+
         Spacer(modifier = Modifier.height(30.dp))
+
         Button(
-            onClick = {
-                navController.navigate(Screens.Home.name){
-                    launchSingleTop = true
-                }
-            },
-            modifier = Modifier
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color.Black),
-            shape = RoundedCornerShape(8.dp)
+            onClick = navigateToHome,
+            modifier = buttonModifier,
+            colors =  ButtonDefaults.buttonColors(
+                containerColor = Color.White,
+                contentColor = Color.Black
+            ),
+            shape = buttonShape
         ) {
             Text(
                 text = "Start",
-               // color = Color.White,
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Bold  // Use FontWeight.Bold instead of specifying a weight directly
+                fontWeight = FontWeight.Bold
             )
         }
     }
