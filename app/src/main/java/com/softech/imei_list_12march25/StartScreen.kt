@@ -85,7 +85,7 @@ fun StartScreen(navController: NavController, homeViewModel: HomeViewModel = vie
     ) {
         // Use SubcomposeAsyncImage optimized with remembered modifiers
         SubcomposeAsyncImage(
-            model = R.drawable.spalsh,
+            model = R.drawable.frame,
             contentDescription = "Splash Image",
             loading = {
                 CircularProgressIndicator(
@@ -110,11 +110,11 @@ fun StartScreen(navController: NavController, homeViewModel: HomeViewModel = vie
 
         Button(
             onClick = {
-                homeViewModel.startLoading()
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(2400)
+               // homeViewModel.startLoading()
+                //CoroutineScope(Dispatchers.Main).launch {
+                  //  delay(2400)
                     navigateToHome()
-                }
+                //  }
                       },
             modifier = buttonModifier,
             colors =  ButtonDefaults.buttonColors(
