@@ -47,7 +47,7 @@ fun SelectBrandScreen(brand: brandNamesEnum, navController: NavController, viewM
     ) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Image(
-                painter = painterResource(id = R.drawable.icon),
+                painter = painterResource(id = R.drawable.baseline_phone_iphone_24),
                 contentDescription =null,
                 modifier = Modifier
                     .size(70.dp)

@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.softech.unlock_imei"
+        applicationId = "com.wainnovations.unlockimeideviceunlock"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

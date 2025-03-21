@@ -26,7 +26,7 @@ fun WebPage_Icloud(title: String, homeViewModel:HomeViewModel = viewModel(), nav
         CardTitle.DEVICE_INFO.title -> "https://imeicheck.com/imei-check"
         CardTitle.DEVICE_UNLOCK.title -> "https://directunlocks.com/en_us"
         CardTitle.ANDROID_SECRET_CODES.title -> " "
-        CardTitle.FREE_IMEI_INSPECTION.title -> "https://imei24.com/"
+       // CardTitle.FREE_IMEI_INSPECTION.title -> "https://imei24.com/"
         else -> "https://www.passfab.com/unlock/unlock-phone-free-with-imei-number.html" // Default URL if title doesn't match
     }
 
@@ -54,7 +54,7 @@ fun WebPage_Icloud(title: String, homeViewModel:HomeViewModel = viewModel(), nav
             },
             modifier = Modifier.fillMaxSize(),
             update = { webView ->
-                webView.loadUrl("https://www.passfab.com/unlock/unlock-phone-free-with-imei-number.html")
+                webView.loadUrl(url)
             }
         )
 

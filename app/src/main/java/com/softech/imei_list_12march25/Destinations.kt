@@ -139,6 +139,18 @@ fun Destinations(navController : NavHostController){
             }) {
             SelectBrandListScreen(brands = brandNamesEnum.entries,navController)
         }
+        composable(
+            Screens.Inspection.name,
+            exitTransition = {
+                fadeOut(animationSpec = tween(FAST_ANIMATION_DURATION)) +
+                        scaleOut(targetScale = 0.95f, animationSpec = tween(FAST_ANIMATION_DURATION))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(ANIMATION_DURATION)) +
+                        scaleIn(initialScale = 0.95f, animationSpec = tween(ANIMATION_DURATION))
+            }) {
+           InspectionScreen(navController)
+        }
 
         composable(route="brand/{data}",
             exitTransition = {
@@ -168,5 +180,5 @@ enum class Screens {
     FormThree,
     SubmitSuccess,
     SecretCodes,
-    BrandSelector
+    Inspection
 }

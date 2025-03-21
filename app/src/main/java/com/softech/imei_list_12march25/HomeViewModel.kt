@@ -56,6 +56,12 @@ class HomeViewModel:ViewModel() {
     fun getCardItems(navController: NavController, context: Context): List<CardItem> {
         return listOf(
             CardItem(
+                CardTitle.UNLOCK_IMEI.title,
+                "Unlock your device's IMEI to access network services.",
+                R.drawable.group_770,
+                onClick = { navController.navigate("WebpageView/${CardTitle.UNLOCK_IMEI.title}") { launchSingleTop = true } }
+            ),
+            CardItem(
                 CardTitle.CHECK_IMEI.title,
                 "Verify and retrieve details about your device's IMEI number.",
                 R.drawable.group_769,
@@ -66,12 +72,6 @@ class HomeViewModel:ViewModel() {
                 "Locate your device's IMEI number quickly and easily.",
                 R.drawable.group_771,
                 onClick = { navController.navigate("WebpageView/${CardTitle.FIND_IMEI.title}") { launchSingleTop = true } }
-            ),
-            CardItem(
-                CardTitle.UNLOCK_IMEI.title,
-                "Unlock your device's IMEI to access network services.",
-                R.drawable.group_770,
-                onClick = { navController.navigate("WebpageView/${CardTitle.UNLOCK_IMEI.title}") { launchSingleTop = true } }
             ),
             CardItem(
                 CardTitle.DEVICE_INFO.title,
@@ -95,7 +95,10 @@ class HomeViewModel:ViewModel() {
                 CardTitle.FREE_IMEI_INSPECTION.title,
                 "Get a free IMEI check to verify your device's authenticity.",
                 R.drawable.group_773,
-                onClick = { navController.navigate("WebpageView/${CardTitle.FREE_IMEI_INSPECTION.title}") { launchSingleTop = true } }
+                onClick = {
+                   // navController.navigate("WebpageView/${CardTitle.FREE_IMEI_INSPECTION.title}") { launchSingleTop = true }
+                    navController.navigate(Screens.Inspection.name)
+                }
             ),
             CardItem(
                 "Share With Friends",
@@ -210,14 +213,14 @@ class HomeViewModel:ViewModel() {
     fun shareApp(context: Context){
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT,"Hey check out my app at: https://play.google.com/store/apps/details?id=com.faappsmania.checkimiedevice")
+            putExtra(Intent.EXTRA_TEXT,"Hey check out my app at: https://play.google.com/store/apps/details?id=com.wainnovations.unlockimeideviceunlock")
         }
         context.startActivity(intent)
     }
 
     fun moreApps(context: Context){
         val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse("https://play.google.com/store/apps/developer?id=FA+Apps+Mania&hl=en")
+        intent.data = Uri.parse("https://play.google.com/store/apps/developer?id=Taprave")
         context.startActivity(intent)
     }
 }
